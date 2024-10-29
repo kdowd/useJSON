@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "Leanne Graham",
+  "username": "Bret",
+  "email": "Sincere@april.biz",
+  "company": {
+    "name": "Deckow-Crist",
+    "catchPhrase": "Proactive didactic contingency",
+    "bs": "synergize scalable supply-chains"
+  }
+}
