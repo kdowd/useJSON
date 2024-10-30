@@ -28,11 +28,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="data.json">
+    <None Include="users\data.json">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="simpleData.json">
-      <Filter>Source Files</Filter>
-    </None>
+    <None Include="users\user_1.json" />
+    <None Include="users\user_2.json" />
   </ItemGroup>
 </Project>

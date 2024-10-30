@@ -6,84 +6,59 @@
 using namespace std;
 using namespace nlohmann;
 
-// data:  https://jsonplaceholder.typicode.com/users
+// test json data:  https://jsonplaceholder.typicode.com/users
 // video: https://www.youtube.com/watch?v=NuWQp_uAvwo
 
+void userNotFoundMessage(string& s) {
+	cout << "Sorry user " << s << " not found." << endl;
+}
 
-int main() {
+void prettyPrint(json& theData) {
+	// pretty print for debugging
+	cout << setw(4) << theData << endl;
+}
 
-	ifstream jsonData("simpleData.json");
+void findUserByEmail(string user_email) {
+	ifstream jsonData("./users/user_1.json");
 
 	if (jsonData.is_open()) {
 
 		json appData = json::parse(jsonData);
+		//prettyPrint(appData);
 
-		//cout << setw(4) << appData[0]["address"] << endl;
+		// find the key and if found get its value and check it.
+		// res == iterator
+		auto res = appData.find("email");
 
-		auto res = appData.find("id");
 
-		if (res != appData.end()) {
-			cout << "GOTCHA" << endl;
-			cout << res.key() << " -- " << res.value() << endl;
+		if ((res != appData.end()) && (res.value() == user_email)) {
+			cout << "FOUND USER" << endl;
+			//cout << res.key() << " -- " << res.value() << endl;
+
+			// loop through all user details
+			for (auto it = appData.begin(); it != appData.end(); it++) {
+
+				if (it.key() == "username") {
+					cout << "Welcome back " << it.value().get<string>() << ", you are logged in. \n";
+				}
+
+			}
 		}
-
-		for (auto it = appData.begin(); it != appData.end(); it++) {
-			cout << it.key() << " -- " << it.value() << endl;
+		else {
+			userNotFoundMessage(user_email);
 		}
-
 
 	}
+
 }
 
 
-//int xxmain()
-//{
-//	ifstream jsonData("data.json");
-//
-//	if (jsonData.is_open()) {
-//
-//		json appData = json::parse(jsonData);
-//
-//		//cout << setw(4) << appData[0]["address"] << endl;
-//
-//		auto res = appData.find("id");
-//
-//		if (res != appData.end()) {
-//			cout << "GOTCHA" << endl;
-//		}
-//		/*for (auto it = appData.begin(); it != appData.end(); ++it) {
-//			cout << it[0].key() << endl;
-//		}*/
-//
-//		cout << string(50, '#') << endl;
-//
-//		for (int i = 0; i < appData.size(); i++) {
-//			cout << appData[i]["company"]["catchPhrase"].get<string>() << endl;
-//		}
-//
-//
-//
-//
-//
-//
-//		for (auto i : appData[0]) {
-//			if (i.is_object()) {
-//				for (auto j : i) {
-//					cout << "----- " << j << endl;
-//				}
-//			}
-//			else {
-//				cout << "%%%%% " << i << endl;
-//			}
-//
-//		}
-//
-//
-//	}
-//
-//
-//
-//	cin.get();
-//
-//}
+
+int main() {
+	findUserByEmail("Sincere@april.biz");
+	cin.get();
+}
+
+
+
 
