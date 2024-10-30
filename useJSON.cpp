@@ -55,8 +55,16 @@ void findUserByEmail(string user_email) {
 
 
 int main() {
-	findUserByEmail("Sincere@april.biz");
-	cin.get();
+	// test email
+	// Sincere@april.biz
+	cout << "Please enter your email:\n";
+	string userEmail;
+	cin >> userEmail;
+
+	findUserByEmail(userEmail);
+
+	system("pause");
+
 }
 
 
