@@ -9,14 +9,32 @@ using namespace nlohmann;
 // test json data:  https://jsonplaceholder.typicode.com/users
 // video: https://www.youtube.com/watch?v=NuWQp_uAvwo
 
-void userNotFoundMessage(string& s) {
-	cout << "Sorry user " << s << " not found." << endl;
+void userNotFoundMessage(string&);
+void prettyPrint(json&);
+void findUserByEmail(string);
+
+
+void createUser() {
+
+
 }
 
-void prettyPrint(json& theData) {
-	// pretty print for debugging
-	cout << setw(4) << theData << endl;
+int main() {
+
+
+
+
+
+	// Sincere@april.biz
+	/*string userEmail;
+	cout << "Please enter your email:\n";
+	cin >> userEmail;
+	findUserByEmail(userEmail);*/
+
+	system("pause");
+	return 0;
 }
+
 
 void findUserByEmail(string user_email) {
 	ifstream jsonData("./users/user_1.json");
@@ -52,20 +70,16 @@ void findUserByEmail(string user_email) {
 
 }
 
-
-
-int main() {
-	// test email
-	// Sincere@april.biz
-	cout << "Please enter your email:\n";
-	string userEmail;
-	cin >> userEmail;
-
-	findUserByEmail(userEmail);
-
-	system("pause");
-
+void prettyPrint(json& theData) {
+	// pretty print for debugging
+	// the argument is a tab width
+	cout << theData.dump(4) << endl;
 }
+
+void userNotFoundMessage(string& s) {
+	cout << "Sorry user " << s << " not found." << endl;
+}
+
 
 
 
